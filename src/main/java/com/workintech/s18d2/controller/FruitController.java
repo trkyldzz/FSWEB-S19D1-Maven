@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/workintech/fruits")
+@RequestMapping("/fruit")
 public class FruitController {
 
     private final FruitService fruitService;
@@ -17,7 +17,7 @@ public class FruitController {
     }
 
     @GetMapping
-    public List<Fruit> getAll() {
+    public List<Fruit> getFruits() {
         return fruitService.getByPriceAsc();
     }
 
@@ -27,22 +27,22 @@ public class FruitController {
     }
 
     @GetMapping("/desc")
-    public List<Fruit> getByPriceDesc() {
+    public List<Fruit> getFruitsDesc() {
         return fruitService.getByPriceDesc();
     }
 
     @PostMapping
-    public Fruit save(@RequestBody Fruit fruit) {
+    public Fruit saveFruit(@RequestBody Fruit fruit) {
         return fruitService.save(fruit);
     }
 
-    @PostMapping("/{name}")
-    public List<Fruit> searchByName(@PathVariable String name) {
+    @GetMapping("/name/{name}")
+    public List<Fruit> getFruitsByName(@PathVariable String name) {
         return fruitService.searchByName(name);
     }
 
     @DeleteMapping("/{id}")
-    public Fruit delete(@PathVariable Long id) {
+    public Fruit deleteFruit(@PathVariable Long id) {
         return fruitService.delete(id);
     }
 }
